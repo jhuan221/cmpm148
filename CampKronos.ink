@@ -309,7 +309,7 @@ The wall above the serving area is a cork board with different crests. The crest
 
 - * [That’s all you recall?]
  
-Under each crest there are dots to illustrate achievements completed by a team. The team with the most dots wins an ice cream party at the end of the summer camp. Currently, the __(randomly pick a team that jimmy is not in charge of)___ are in the lead after gaining a dot through their expedition to the beach where the campers collect sand dollars. Jimmy planned a nightly hike as an opportunity for the campers to win a dot through a test of bravery.
+Under each crest there are dots to illustrate achievements completed by a team. The team with the most dots wins an ice cream party at the end of the summer camp. Jimmy planned a nightly hike as an opportunity for the campers to win a dot through a test of bravery.
  
 His stomach grumbles.
 
