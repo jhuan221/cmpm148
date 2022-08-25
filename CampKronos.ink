@@ -352,7 +352,7 @@ Jimmy approaches the campers and tells them to line up near the service window. 
 ->DONE
 
 === hike_body ===
-Jimmy and the campers finish their meal and head towards their cabin. Jimmy takes a glance at the moon: it was a full moon tonight, perfect to illuminate the hike. It would be easier to keep track of the kids with the terrain being lit by the moon tonight. 
+Jimmy and the campers finish their meal and head towards their cabin. Jimmy takes a glance at the moon: it was a full moon tonight, perfect to illuminate the hike. It would be easier to keep track of the kids with the terrain being lit. 
 
 * [ “______”.]
 
@@ -473,7 +473,7 @@ Jimmy stands up, “Thanks for understanding, ChoomChoom. Let’s head back to t
 
 === hike_description_end(->ret)
 {currentProgression == hike && hikeState == end:
-    * [Tell Bigfoot story]
+    * [The Tale of BigFoot.]
     -> hike_body_end ->
     ->ret
 }
