@@ -10,7 +10,6 @@ VAR BobState = Neutral
 VAR ChoomChoomState = Neutral
 VAR PerryState = Neutral
 VAR currentProgression = intro
-VAR favorability = 0
 
 LIST storyletProgression = beginning, middle, end
 LIST groupNames = Otters, Foxes, Slugs
@@ -28,6 +27,8 @@ VAR gabeAlive = alive
 VAR bobAlive = alive
 VAR choomchoomAlive = alive
 VAR perryAlive = alive
+
+VAR brokenArm = false
 
 Camp Kronos
 ->cronos
@@ -605,24 +606,131 @@ Taking in the terrain for any signs of where Gabe could have gone, Jimmy sees th
             }
         
 - ~ gabeState = middle
+~ currentProgression = bob
 ->->
 
 === bob_description(->ret)
 {currentProgression == bob:
-    * [Ask campers about Bob]
+    As the group began their trek towards the lake, Jimmy walked behind them as they talked amongst themselves. He took in the scenery around him, admiring the chirping birds, the cool breeze that rustled the leaves up above, and the occasional squirrel running up a tree. 
+
+    As he looked at one of the trees, he saw what looked to be a black cat sitting beside it. Jimmy was confused because it’s abnormal to see a cat like that this far into the wilderness. But before he could confirm what he was seeing, it was gone. 
+
+    Before Jimmy could get too far into thought about the connotations of seeing a black cat, he was snapped back to reality by Bob yelling, “We made it!!!”.
+
+    * [Time for the Lake]
       -> bob_body ->
     -> ret
 }
 -> DONE
 
 === bob_body ===
-You should ask children about Bob's whereabouts
-+ [Go to Perry]
-    You go to Perry to ask him about what happened to Bob
-    ~ currentProgression = perry
+{ gabeAlive == dead:
+    The campers immediately ran towards the lake. ChoomChoom grabbed some flat rocks to skip, while Bob and Perry changed into his swimsuit and cannonballed straight in.
+- else:
+    The campers immediately ran towards the lake. ChoomChoom and Gabe grabbed some flat rocks to skip, while Bob and Perry changed into their swimsuits and cannonballed straight in.
+}
+
+    Jimmy sat there listening to the chaos of Bob and Perry splashing each other while watching ChoomChoom somehow skip a rock eight times.
     
-* [Go to ChoomChoom]
-    ~currentProgression = choomchoom
+    The sun was about to set, so Jimmy figured it was time to head back.
+
+    “Alrighty campers! It’s time to head back, grab your stuff and let’s get going! I’ll grab you guys some towels so you can dry off.”
+    
+    * [Grab some towels]
+    
+        Jimmy walked back to where he left his backpack and grabbed a couple towels for Bob and Perry.
+    
+        Suddenly, the campers began chanting “ChoomChoom! ChoomChoom! ChoomChoom!”, and as you looked over you saw ChoomChoom carrying a massive rock over his head towards the lake.
+    
+        This looks incredibly dangerous, and Jimmy thinks about putting a stop to this.
+        
+        ** [Tell ChoomChoom to put the rock down]
+            ~ GabeState--
+            ~ BobState--
+            ~ ChoomChoomState--
+            ~ PerryState--
+            “Hey! Cut that out! You could hurt yourself doing that.” Jimmy exclaims.
+    
+            Perry has a frustrated look on his face. “Oh, come on Jimmy! Don’t you wanna see the splash this thing will make?”
+    
+            Jimmy retorts, “Not if it means ChoomChoom gets hurt! I don’t know about you but I am not    equipped to lug another human on my back all the way to camp.”
+    
+            The campers groan and ChoomChoom puts down the rock.
+    
+            “It’s getting dark anyway, let’s just head back to camp.”
+            
+            *** [Head back to camp]
+                
+                Jimmy turns around to get ready for the walk, but something isn’t right. 
+                
+                Bob is gone.
+                
+                A wave of panic settles over Jimmy. Did he really lose two kids in one night? Why has tonight gone so horrible? Is it his fault? What else could he have done? Questions and doubts flood his mind as he comes back to reality. He needs to figure out where Bob went, maybe one of the campers knows?
+                
+                    **** [Ask Perry]
+                        You go to Perry to ask him about what happened to Bob
+                        ~ currentProgression = perry
+                            
+                    **** [Ask ChoomChoom]
+                        ~ currentProgression = choomchoom
+        
+        ** [Let them have fun]
+            ~ GabeState++
+            ~ BobState++
+            ~ ChoomChoomState++
+            ~ PerryState++
+            ~ brokenArm = true
+            ChoomChoom is using all of his strength, but even so it’s extremely hard to take each step. With his fellow campers cheering him on, however, he carries on. 
+    
+            “Come on ChoomChoom, you got this!”
+    
+            “Wooo!!!! Go ChoomChoom!”
+            
+            {item == stick:
+                “Wait! Watch out for that s-”
+            - else:
+                “Wait! Watch out for that r-”
+            }
+            
+            It was too late. ChoomChoom fell forward with the rock landing directly on his arm.
+    
+            Screams of agony interrupted the peace of the forest, and Jimmy’s heart sank. 
+    
+            “What happened?!” Jimmy asks while trying to comfort ChoomChoom.
+    
+            {item == stick:
+                “Th-there was a root sticking out of the ground. I tried to tell him but he had already tripped.” Perry explains.
+            - else:
+                “Th-there was a stick on the ground. I tried to tell him but he had already tripped.” Perry explains.
+            }
+            
+            “God d-” Jimmy calmed himself down. “Go grab me the towels over there, we need to keep the arm in place!”
+            
+            *** [Reassure ChoomChoom]
+            
+                Jimmy continues to reassure ChoomChoom, “It’s okay, the bone didn’t puncture your skin, so at least you’re not bleeding. We’ll go back to the camp and get an ice pack to help with the swelling once we stabilize your arm.” 
+        
+                Perry returns with the towels, and Jimmy improvises a splint to keep the arm from moving.
+                “Can you walk?”
+        
+                “I think so, yeah”
+        
+                “Alright, let’s head back so we can get some ice on that.”
+        
+                **** [Head back to camp]
+                
+                    Jimmy turns around to get ready for the walk, but something isn’t right. 
+                
+                    Bob is gone.
+                
+                    A wave of panic settles over Jimmy. Did he really lose two kids in one night? Why has tonight gone so horrible? Is it his fault? What else could he have done? Questions and doubts flood his mind as he comes back to reality. He needs to figure out where Bob went, maybe one of the campers knows?
+                
+                        ***** [Ask Perry]
+                            You go to Perry to ask him about what happened to Bob
+                            ~ currentProgression = perry
+                            
+                        ***** [Ask ChoomChoom]
+                            ~ currentProgression = choomchoom
     
 -
 ->->
@@ -630,64 +738,252 @@ You should ask children about Bob's whereabouts
 
 === choomchoom_description(->ret) ===
 { currentProgression == choomchoom:
-    ChoomChoom is too scared to get any information from him.
-    + [Ask anyway]
+    { brokenArm == false:
+Jimmy slowly moved towards ChoomChoom. ChoomChoom  was standing there shaking.  He was thinking about Bob and his disappearance. 
+
+     } 
+    { brokenArm == true:
+	Jimmy slowly moved towards injured ChoomChoom.  ChoomChoom  was standing there shaking and in pain.  He appears to be shocked by Bob’s disappearance.  
+    }
+    + [Ask ChoomChoom about Bob]
         -> choomchoom_body ->
     ->ret
 }
 -> DONE
 
 === choomchoom_body ===
-ChoomChoom is running away
+{ brokenArm == true:
+Jimmy approached ChoomChoom asking him about his arm condition and whether it was causing any discomfort to him.  ChoomChoom seems to be grateful for Jimmy’s care.  
+“Are you alright?” asked Jimmy
+“I’m good, thanks for asking,” said ChoomChoom.  
+“You know, I was thinking about Bob and Gabe, and it got me thinking - Will I disappear too?”
+“Not if we stay together,” said Jimmy.  “I can even fight off the bigfoot if needed.”
+ChoomChoom doesn’t seem very persuaded and he suddenly runs away.
+-else :
+Jimmy approached ChoomChoom and tried to reassure him.
+“Hey buddy, are you alright?”
+“I’m fine, but I think I need more time to think about this situation with Bob and Gabe,” said ChoomChoom.
+“Is there anything you want to talk about?”  asked Jimmy.
+“You know, I was thinking about Bob and Gabe, and it got me thinking - Will I disappear too?”
+“Not if we stay together,” said Jimmy.  “I can even fight off the bigfoot if needed.”
+ChoomChoom doesn’t seem very persuaded and he suddenly runs away.
+}
 
 + [Follow him]
-    You found ChoomChoom near the lake
-    ** [Eat him]
-        You ate ChoomChoom and return to the campers
-        You decided to ask Perry about Bob
+Following ChoomChoom led Jimmy to Kronos Forest.  After working here for so long, Jimmy started to forget how beautiful the nature around the camp was. Jimmy quickly snapped out of it and reminded himself that he needed to look for ChoomChoom.
+After some time, Jimmy noticed a shaking bush, so he decided to check whether ChoomChoom was there.  Apparently, ChoomChoom hid there and fell asleep.  
+A sudden headache strikes Jimmy and he feels like the voice is ripping him from the inside.  
+    ** [VOICE: EAT HIM]
+        A sudden burst of rage made Jimmy devour ChoomChoom.  After finishing the deed, Jimmy fell unconscious.
+        After some time Jimmy woke up.  
+“What happened to me? Well, I seem to be fine, ChoomChoom is nowhere to be found, but he has already reached the camp.”
+“Gotta keep looking for Bob, I guess.  As I remember Perry should know something about it.”
+*** [Go to Perry]
         ~currentProgression = perry
         ~ChoomChoomAlive = false
-    ** [Calm ChoomChoom down and reunite with other children]
-        You brought ChoomChoom back to the rest of children.
-        You decided to ask Perry about Bob
+    ** [Fight the voices in your head]
+       A sudden burst of rage was suppressed by Jimmy’s will.  He woke ChoomChoom up and brought him to the rest of the children.
+ “Well, We still need to search for Bob.  I guess we should ask Perry.  He must know something about Bob’ disappearance.” 
+“ I guess so too,” said ChoomChoom.
+  *** [Go to Perry]
+        ~currentProgression = perry
+        ~ChoomChoomAlive = false
         ~currentProgression = perry
 
 + [Let him go]
-    Later you learned that ChoomChoom successfully reached the camp by himself.
-    You decide to keep searching for Bob
+   I think ChoomChoom is a smart kind and he should be able to reach the camp himself.  
+As it turned out, Jimmy was right and ChoomChoom indeed managed to find his way back safely.
+    “Well, I still need to search for Bob.  I guess I will ask Perry.  He must know something about Bob’ disappearance.” 
     ~ChoomChoomState--
     ~currentProgression = perry
 -
 ->->
 
-
-
 === perry_description(->ret)
 {currentProgression == perry:
-        You approach Perry
+        “Perry, do you know where Bob went?”
+
+        “Are you kidding me? You lost another one of us?”
+
+        “Listen, I’m trying my best. Tonight has been rough but I’m doing everything I can to keep you kids safe.”
+
+        “Alright, fine. I think earlier he was talking about that zipline on the other side of the lake. Maybe he went there?”
+
+        “Ok. Let’s go check it out.”
+
+        “What do you mean? I’m not going with you.”
+
+        “What? Why?”
+
+        “I don’t want to turn into another one of your lost kids. I’m going to stay right here where it’s safe.”
+
+        Frustration consumes Jimmy. “My lost kids? As if I’m trying to lose them. It’s not my fault they’re a bunch of bumbling idiots who can’t stay near the group. Who does this kid think he is? Ok Jimmy, you need to calm down. My main priority right now is finding Bob. Maybe I could just ask nicely? Or maybe he would be more receptive if I paid him?”
         -> perry_body ->
     -> ret
 }
 ->DONE
 
 === perry_body ===
-The voice inside Jimmy’s head tells him to bribe Perry
 
 * [Bribe Perry]
-    Perry is displeased with your attempted bribery and tells the other kids you lost Bob
-    Jimmy chases Perry
-    ~ BobAlive = false
-    * * [Eat Perry]
-        You ate Perry and went back to the camp.
+~ PerryState--
+    “I know you don’t trust me, but I really need you to come with me. Everyone wants money, right? How about if you come with me, I’ll give you ten dollars. How does that sound?”
+“Wow. You’re really trying to bribe me, aren’t you? So not only have you lost Bob, but now you're trying to bribe me. What kind of camp counselor does that? You know what, I’m going back to camp to tell the other counselors what you’ve done.”
+“No.”
+“What do you mean, ‘No’? Nevermind, I shouldn’t even be talking to you.” Perry says as he begins to walk away.
+Thoughts rush through Jimmy’s head, “Fuck. Fuck. FUCK. How the fuck do I get out of this? It’s not like he’s going to listen to anything I say, and it’s not like I can just stop him.”
+A mysterious voice appears inside Jimmy’s head, “Yes you can.”“Wha- What is this? Who are you?”
+“I’m you. You can stop him.”
+“How?”
+“Simple. Eat him.”
+“What? What kind of person do you think I am? I’m not doing that. I can’t.”
+“Well, you either do that, or he tells the whole camp about what you’ve done. You can’t let that happen, can you?”
+** [Listen To the Voice]
+~ BobAlive = false
+Jimmy begins to laugh hysterically as his sanity plummets into the void.
+
+“Hey! Hey Perry!”
+
+“Shut up! I’m not talking to you.” 
+
+“Just… listen to me.”
+
+“What do you want?”
+
+Perry turned around to face Jimmy, only to discover that he was not looking at the Jimmy he knew. Jimmy had a twisted smile and his left eye was twitching as a single tear rolled down his face.
+
+“Run.”
+
+“What’s happening, Jimmy?”
+
+“RUN.”
+
+Perry turned back towards camp and ran as fast as his legs would let him. His heart was pounding as he heard Jimmy’s footsteps getting closer, and closer, and closer.
+
+(THUD)
+
+Jimmy had caught up.
+
+As Perry’s final scream dissipated into the forest, Jimmy sat there, silent.
+
+After a while, Jimmy began his walk back to camp. As he left behind all of the tragedy he had caused, relief set in.
+
+“It’s over… it’s finally over.”
+
+At that moment, the ground started to shake. Jimmy wobbled around trying to get back to camp for shelter. Before he could, a branch from a tree above fell and struck him on the head, knocking him out. 
+
         ~ PerryAlive = false
         ~currentProgression = ending
-    * * [Calm Down]
-        You calmed down and went back to the camp.
-        ~ PerryState--
-        ~currentProgression = ending
+** [Don’t Listen To the Voice]
+“I… I can’t.”
+
+“What do you mean you can’t? I’m trying to help you! That kid is about to ruin your life!”
+
+“I know… but where does it stop? I can’t keep fixing the bad things I’ve done with more bad things. That’s not the life I want to live.”
+
+“You’re a coward. Afraid to do what needs to be done because of what? Because you care about these stupid kids? You should be protecting yourself, not them!”
+
+“I’m a coward? I’m accepting responsibility for my actions. You just- You can’t accept that. You’re afraid of the consequences. I know you said that you were me, but I’m nothing like you. You are a weak, pathetic, scared… thing!”
+
+“Bahaha, this is hilarious. Why are you trying to act tough with me? Where is that going to get you? You’re stuck with me. Like I said earlier, I am you.”
+
+“Please. Just get out of my head.”
+
+“No can do. I need you.”
+
+“Need me? What could you possibly need me for?”
+
+“Let’s just say I have a particular… craving, and I can’t quite satisfy that craving without you.”
+
+“You’re an animal.”
+
+“I am you.”
+
+“No… No! Get out of my head! GET OUT OF MY HEAD! GET OUT OF MY-”
+
+Suddenly the ground began to shake. Jimmy was crying hysterically as he tried to move towards the camp. He wobbled down the path, but with both his mental and physical world collapsing around him, he collapsed.
+~currentProgression = ending
+
     
 * [Politely ask Perry to lead you to Bob]
-    Perry goes with Jimmy and they both find Bob
+    “Please, Perry. I’ve been having a rough night and would really appreciate the help. Sure I’ve messed up and yes I’ve been doing a horrible job, but I’m trying. It would mean a lot to me if you helped me this one time.”
+
+    “Yeah… maybe you’re right. I’ll go with you. Oh, and sorry about what I said”
+
+    “It’s alright. Like I said, I haven’t been doing the best job, so it’s understandable that you’re upset right now.”
+    
+    ** [Go find Bob]
+        {brokenArm == true:
+            Jimmy and Perry walk around the lake, and sure enough, there is Bob sitting next to the zipline. Jimmy notices that something isn’t right with Bob, he’s crying.
+
+            “Hey Bob, what’s wrong?” Jimmy says gently.
+
+            “I- It’s my fault.” Bob says while sniffling.
+
+            “What do you mean?”
+
+            {item == stick:
+                “ChoomChoom tripped on my lucky stick. I dropped it when I started cheering him on, but it landed right in front of him. I’m such an idiot, I don't know how I didn’t notice.”
+                *** [Forgive Bob]
+                    “It’s alright Bob, everyone makes mistakes. All responsibility falls on me, I shouldn’t have even let him carry that rock in the first place.”
+
+                    “Are you sure?”
+
+                    “Yup, now let’s head back, we’ve been worried about you!”
+
+                    “I’m sorry, I just felt like I needed to run away from it all.”
+
+                    “I know, we’re just happy to have you back.”
+                    
+                    ~ BobState++
+                    
+                    -> perry_end
+
+                *** [Shame Bob]
+                    “I’m disappointed in you, Bob. You need to be more careful, especially in a situation as dangerous as that!”
+
+                    “I-I’m sorry Jimmy…”
+
+                    “Don’t apologize to me, apologize to ChoomChoom. In fact, let’s get back to him so you can do just that.”
+                    
+                    ~ BobState--
+                    
+                    -> perry_end
+
+            - else:
+                “I’m the one that told ChoomChoom to throw that rock into the lake. He broke his arm because of me.”
+
+                “Oh Bob, it’s okay, nobody could have expected it to turn out how it did. You shouldn’t take responsibility for that. Nobody is blaming you.”
+
+                “Really?”
+
+                “Yup, now let’s head back, we’ve been worried about you!”
+
+                “I’m sorry, I just felt like I needed to run away from it all.”
+
+                “I know, we’re just happy to have you back.”
+                
+                ~BobState++
+                
+                -> perry_end
+
+            }
+            
+        - else:
+            Jimmy and Perry walk around the lake, and sure enough, there is Bob sitting next to the zipline.
+
+            “Hey Bob! What are you doing over here?”
+
+            “Oh, sorry! I wanted to try out the zipline before we went back to camp.”
+
+            “It’s alright, just make sure to tell me next time.
+            
+            -> perry_end
+        }
+-
+->->
+
+=== perry_end ===
     ~ PerryState++
     ~ currentProgression = ending
 -
@@ -749,4 +1045,8 @@ The voice inside Jimmy’s head tells him to bribe Perry
 ->DONE
 
 
+
+
+
+    
 
