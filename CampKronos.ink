@@ -595,7 +595,7 @@ Taking in the terrain for any signs of where Gabe could have gone, Jimmy sees th
         - flashlight: 
         Jimmy goes to ChoomChoom and asks to borrow his flashlight. Obtaining the flashlight, he sets off to follow the footsteps down the path. Following the footsteps, they began to go off road into an unknown path into the trees. Hesitantly, Jimmy walks down, shining his flashlight. A snap. Jimmy looked down and saw that he stepped on a branch. Slowly, he continues, though he sense an eerie presence behind him. 
         
-        (Add choice here later)
+       -> gabe_flashlight_description ->
         
         - mascot: 
          Perry seems slightly nervous. Jimmy notices and reassures him that BigFoot wasn’t going to pop out from behind a tree. Fidgeting some more, Perry admits that he might know where Gabe had went. 
@@ -605,8 +605,15 @@ Taking in the terrain for any signs of where Gabe could have gone, Jimmy sees th
         Jimmy asks which direction Gabe went and Perry points back down the path they were walking before, the opposite direction of the footprints. Jimmy again tells the kids to stay put and runs to find Gabe. Gabe is found wandering through a bush trying to find the plushie. Jimmy catches up with him and ushers him back to the group, scolding him not to wander on his own.
             }
         
-- ~ gabeState = middle
-~ currentProgression = bob
+- * [Head to the lake]
+- ~ currentProgression = bob
+->->
+
+=== gabe_flashlight_description ===
+* [Shouldn’t have left them alone Jimmy.] 
+Jimmy jerks his head around, his breathing slightly shaky. A rustling sound, Jimmy points the light towards it and finds Gabe wrestling with a raccoon. Jimmy runs over to break up the fight, grabbing Gabe and runs back to the path. 
+
+Jimmy tired from the fiasco and just glad that he found Gabe ushered him back into the group. The campers were busy playing a game of tic-tac-toe they had scribbled onto the ground. Wiping off the abundance of sweat, Jimmy looks forward towards the lake, “Kiddos, it's time to march on”.
 ->->
 
 === bob_description(->ret)
