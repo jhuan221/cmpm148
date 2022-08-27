@@ -1106,24 +1106,27 @@ As it turned out, Jimmy was right and ChoomChoom indeed managed to find his way 
     }
     {ChoomChoomAlive == true:
         + {GabeAlive == false} [Explain what happened to Gabe]
+		Can you tell me what happened to Gabe?
                 {ChoomChoomState >= 0:
-                    ChoomChoom says something good about Jimmy in regards to Gabe
-                - else:
-                    ChoomChoom says something bad about Jimmy in regards to Gabe
+		As I remember, Gabe was the first one to disappear.  It happened so suddenly that we couldn't find any reasonable excuse for that. Jimmy tried to reassure us with his funny stories, and we felt a little better afterwards.  He might still be somewhere around the Lake, maybe we should search together?
+		- else:
+                    Jimmy was the one that started looking for Gabe.  After some time, Jimmy told us that Gabe disappeared, but I didn't believe him.  I could feel that something was off, and kept going with care.
                 }
                 ->ending_body
         + {BobAlive == false} [Explain what happened to Bob]
+		Can you tell me what happened to Bob?
                 {ChoomChoomState >= 0:
-                    ChoomChoom says something good about Jimmy in regards to Bob
+                    Me and Jimmy did try to look for Bob, but weren't successful.  We asked Perry to help us out, but we still had no luck.
                 - else:
-                    ChoomChoom says something bad about Jimmy in regards to Bob
+                    When me and Jimmy were looking for Bob, I noticed how nervous Jimmy was, it felt like he has something to hide.  Being terified by Bob's disappearance, I was too afraid of asking other questions.
                 }
                 ->ending_body
         + {PerryAlive == false} [Explain what happened to Perry]
+		Can you tell me what happened to Perry?
                 {ChoomChoomState >= 0:
-                    ChoomChoom says something good about Jimmy in regards to Perry
+                    I don't really know what happened to Perry.  After Bob disappeared, I was very scared, but Jimmy comforted me, and we started looking for Perry together.
                 - else:
-                    ChoomChoom says something bad about Jimmy in regards to Perry
+                    I felt something was wrong with Jimmy from the beginning of the Hike. And as the hike went on, more and more weird stuff started to happen.  Children started to disappear and I decided to watch Jimmy from afar.  When Jimmy started questioning Perry about Bob’s disappearance, I decided to follow him.  After some time, I saw Jimmy eating Perry.
                 }
                 ->ending_body
     }
