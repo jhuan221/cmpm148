@@ -2,4 +2,4 @@
 
 Camp Kronos 
 
-Playable version through github pages
+Playable link: https://jhuan221.github.io/cmpm148/
