@@ -1108,9 +1108,15 @@ As it turned out, Jimmy was right and ChoomChoom indeed managed to find his way 
         + {GabeAlive == false} [Explain what happened to Gabe]
 		Can you tell me what happened to Gabe?
                 {ChoomChoomState >= 0:
-		As I remember, Gabe was the first one to disappear.  It happened so suddenly that we couldn't find any reasonable excuse for that. Jimmy tried to reassure us with his funny stories, and we felt a little better afterwards.  He might still be somewhere around the Lake, maybe we should search together?
+		"As I remember, Gabe was the first one to disappear.  It happened so suddenly that we couldn't find any reasonable excuse for that. 
+		"Did you start looking for Gabe?"
+		"Jimmy did, and he told us to stay together."
+		"And you want to say that Jimmy wasn't able to find Gabe?"
+		"Jimmy tried to reassure us with his funny stories, and we felt a little better afterwards. I'm sure Jimmy did his best in searching, but he's still just one person. Gabe might still be somewhere around the Lake, maybe we should search together?
 		- else:
-                    Jimmy was the one that started looking for Gabe.  After some time, Jimmy told us that Gabe disappeared, but I didn't believe him.  I could feel that something was off, and kept going with care.
+                    Jimmy was the one that started looking for Gabe.  After some time, Jimmy told us that Gabe disappeared, but I didn't believe him.  
+		    "Why didn't you believe him?"
+		    I could feel that something was off, and kept going with care.
                 }
                 ->ending_body
         + {BobAlive == false} [Explain what happened to Bob]
